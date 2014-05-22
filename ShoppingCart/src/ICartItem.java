@@ -10,7 +10,7 @@ public interface ICartItem {
    * 
    * @element-type ShoppingCart
    */
-  public Vector  myShoppingCart;
+ // public Vector  myShoppingCart;
 
   public int getId();
 

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -7,19 +8,19 @@ public interface IShoppingCart {
 
   public int getId();
 
-  public int getSessionID();
+  public int getSessionId();
 
-  public int getCustomerID();
+  public int getCustomerId();
 
   public void addItem(ICartItem item);
 
-  public void updateQuantity(int cartItemID, int newQuantity);
+  public void updateQuantity(int cartItemId, int newQuantity);
 
   public void removeItem(int cartItemId);
 
-  public ICartItem getItem(int productID);
+  public ICartItem getItem(int productId);
 
-  public ICartItem[] getItems();
+  public ArrayList<ICartItem> getItems();
 
   public int countItems();
 

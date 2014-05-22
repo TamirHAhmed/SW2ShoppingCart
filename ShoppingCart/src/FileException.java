@@ -1,5 +1,6 @@
-public class PersistenceException extends java.lang.Exception {
 
+
+public class FileException extends PersistenceException {
 
 	private String message;
 
@@ -10,5 +11,4 @@ public class PersistenceException extends java.lang.Exception {
 	public String getMessage() {
 		return message;
 	}
-
 }

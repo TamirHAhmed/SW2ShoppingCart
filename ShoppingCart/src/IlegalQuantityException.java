@@ -1,5 +1,5 @@
-public class PersistenceException extends java.lang.Exception {
 
+public class IlegalQuantityException extends java.lang.RuntimeException {
 
 	private String message;
 
@@ -10,5 +10,4 @@ public class PersistenceException extends java.lang.Exception {
 	public String getMessage() {
 		return message;
 	}
-
 }

@@ -1,5 +1,6 @@
-public class PersistenceException extends java.lang.Exception {
 
+
+public class CartItemNotFoundException extends java.lang.Exception {
 
 	private String message;
 
