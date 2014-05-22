@@ -32,7 +32,7 @@ public class FilePersistence implements IPersistenceMechanism {
   return null;
   }
 
-  private FilePersistence() {
+  FilePersistence() {
   }
 
 @Override

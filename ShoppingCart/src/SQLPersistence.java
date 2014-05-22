@@ -29,7 +29,7 @@ public class SQLPersistence implements IPersistenceMechanism {
 		return null;
 	}
 
-	private SQLPersistence() {
+	SQLPersistence() {
 	}
 
 	@Override

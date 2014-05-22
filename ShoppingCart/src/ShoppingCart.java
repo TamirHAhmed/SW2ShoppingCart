@@ -110,7 +110,7 @@ public class ShoppingCart implements IShoppingCart {
 		return lastAccessed;
 	}
 
-	public ShoppingCart(int cartID, int customerID, int sessionID) {
+	ShoppingCart(int cartID, int customerID, int sessionID) {
 		this.id = cartID;
 		this.customerId = customerID;
 		this.sessionId = sessionID;
