@@ -1,5 +1,14 @@
 public class PersistenceFactory {
 
+	
+	/**
+	 * Chooses type of loading mechanism based on paramater type and returns
+	 * the correct object type to be used
+	 * 
+	 * @param type   string containing the type to be used in loading mechanism.
+	 * @return IPersistenceMechanism of subclass used in loading mechanism otherwise 
+	 * returns null.
+	 */
 	public IPersistenceMechanism loadMechanism(String type) {
 		
 		if (type == null){
@@ -8,7 +17,7 @@ public class PersistenceFactory {
 		
 		if (type.equalsIgnoreCase("SQL")){
 		
-			return new SQLPersistence();
+			return (new SQLPersistence());
 		
 		} else if (type.equalsIgnoreCase("File")){
 			
