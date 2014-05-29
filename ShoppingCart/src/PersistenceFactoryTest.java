@@ -7,10 +7,11 @@ public class PersistenceFactoryTest {
 	@Test
 	public void testLoadMechanism() {
 
-		PersistenceFactory obj = new PersistenceFactory();
-		SQLPersistence obj1 = new SQLPersistence();
+		PersistenceFactory factory = new PersistenceFactory();
 		
-		assertEquals(obj1, obj.loadMechanism("SQL"));
+		assertEquals(new SQLPersistence().getClass(), factory.loadMechanism("SQL").getClass());
+		assertEquals(new FilePersistence().getClass(), factory.loadMechanism("File").getClass());
+		assertEquals(null, factory.loadMechanism("other"));
 
 	}
 

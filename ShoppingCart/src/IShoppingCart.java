@@ -48,7 +48,6 @@ public interface IShoppingCart {
 	 * 
 	 * @param cartItemId   the item id of the item to be found.
 	 * @throws CartItemNotFoundException if cart item is not found
-	 * @throws IllegalArgumentException   If cartItemId is < 0.
 	 */
   public void removeItem(int cartItemId);
 
@@ -58,7 +57,6 @@ public interface IShoppingCart {
 	 * @param cartProductID   the product id of the item to be found.
 	 * @return ICartItem object of the specified productId if found, null otherwise.
 	 * @throws CartItemNotFoundException if cart item is not found
-	 * @throws IllegalArgumentException   If productId is < 0.
 	 */
   public ICartItem getItem(int productId);
 

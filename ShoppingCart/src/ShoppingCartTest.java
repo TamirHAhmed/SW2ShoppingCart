@@ -1,5 +1,5 @@
 import static org.junit.Assert.*;
-
+import java.util.Date;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -52,15 +52,7 @@ public class ShoppingCartTest {
 		assertEquals(7, cart.getItem(2).getQuantity());
 	}
 
-	@Test
-	public void testFindItemIdIndex() {
-		assertEquals(0, cart.findItemIdIndex(2));
-	}
 
-	@Test
-	public void testFindProductIdIndex() {
-		assertEquals(0, cart.findProductIdIndex(2));
-	}
 
 	@Test
 	public void testRemoveItem() {
@@ -88,7 +80,7 @@ public class ShoppingCartTest {
 	@Test
 	public void testGetLastAccessedDate() {
 		
-		fail("Not yet implemented");
+		assertEquals(new Date(), cart.getLastAccessedDate());
 	}
 
 	@Test

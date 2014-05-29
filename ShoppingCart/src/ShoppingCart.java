@@ -36,79 +36,87 @@ public class ShoppingCart implements IShoppingCart {
 
 	public void addItem(ICartItem item) {
 		itemsArray.add(item);
+		lastAccessed = new Date();
 	}
 
 
 	public void updateQuantity(int cartItemId, int newQuantity) {
-		int index = findItemIdIndex(cartItemId);
+		
+				try {
+					
+					//checks quantity and throws exception if quantity is <= 0
+					if(newQuantity <=0){
+						IlegalQuantityException ex = new IlegalQuantityException();
+						ex.setMessage("invalid quanitity amount entered, 0 or less");
+						throw ex;
+					}
+					
+					for (int i = 0; i < itemsArray.size(); i++) {
 
-		if (index >= 0) {
-			itemsArray.get(index).setQuantity(newQuantity);
-		}
+						if (itemsArray.get(i).getId() == cartItemId) {
+							itemsArray.get(i).setQuantity(newQuantity);
+							lastAccessed = new Date();	
+							return;
+						}
+					}
+					
+					//throws exception if no cart item of this ID is found
+					CartItemNotFoundException ex = new CartItemNotFoundException();
+					ex.setMessage("cart ID not found in list of cart items");
+					throw ex;
+				} catch (IlegalQuantityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (CartItemNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 	}
 
-	/**
-	 * Return index of the specified cart item id. If the item is not found, -1
-	 * is returned.
-	 * 
-	 * @param cartItemID   the id of the item to be found.
-	 * @return index of cartItem if found, -1 otherwise.
-	 * @throws CartItemNotFoundException if cart item is not found
-	 * @throws IllegalArgumentException   If cartItemID is < 0.
-	 */
-	public int findItemIdIndex(int cartItemId) {
+	public void removeItem(int cartItemId){
+		
+		try {
+			for (int i = 0; i < itemsArray.size(); i++) {
 
-		for (int i = 0; i < itemsArray.size(); i++) {
-
-			if (itemsArray.get(i).getId() == cartItemId) {
-				return i;
+				if (itemsArray.get(i).getId() == cartItemId) {
+					itemsArray.remove(i);
+					return;
+				}
 			}
-		}
-
-		return -1;
-	}
-
-	/**
-	 * Return index of the specified cart product id. If the item is not found,
-	 * -1 is returned.
-	 * 
-	 * @param cartProductID   the product id of the item to be found.
-	 * @return index of cartProductId if found, -1 otherwise.
-	 * @throws CartItemNotFoundException if cart item is not found
-	 * @throws IllegalArgumentException   If cartProductId is < 0.
-	 */
-	public int findProductIdIndex(int cartProductId) {
-
-		for (int i = 0; i < itemsArray.size(); i++) {
-
-			if (itemsArray.get(i).getProductId() == cartProductId) {
-				return i;
-			}
-		}
-
-		return -1;
-	}
-
-	
-
-	public void removeItem(int cartItemId) {
-		int index = findItemIdIndex(cartItemId);
-
-		if (index >= 0) {
-			itemsArray.remove(index);
+			
+			//throws exception if no cart item of this ID is found
+			CartItemNotFoundException ex = new CartItemNotFoundException();
+			ex.setMessage("cart ID not found in list of cart items");
+			throw ex;
+		} catch (CartItemNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 
 	public ICartItem getItem(int productId) {
-		int index = findProductIdIndex(productId);
 
-		if (index >= 0) {
-			return itemsArray.get(index);
-		}
+			try {
+				for (int i = 0; i < itemsArray.size(); i++) {
 
-		return null;
+					if (itemsArray.get(i).getProductId() == productId) {
+						return itemsArray.get(i);
+					}
+				}
+				
+				//throws exception if no cart item of this ID is found
+				CartItemNotFoundException ex = new CartItemNotFoundException();
+				ex.setMessage("cart ID not found in list of cart items");
+				throw ex;
+			} catch (CartItemNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return null;
 	}
 
 
@@ -126,10 +134,10 @@ public class ShoppingCart implements IShoppingCart {
 		return lastAccessed;
 	}
 
-	
+
 	/**
 	 * Constructor that initializes values of cartId, customerId, sessionId
-	 * 
+	 *
 	 * @param cartId   the id of this shoppingCart.
 	 * @param customerId   the id of the customer using this shoppingCart.
 	 * @param sessionId   the session id in which this shoppingCart was created.

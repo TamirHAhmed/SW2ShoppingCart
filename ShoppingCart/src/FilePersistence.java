@@ -10,7 +10,7 @@ public class FilePersistence implements IPersistenceMechanism {
 
 	public File file;
 
-	public IPersistenceMechanism instance;
+	private static IPersistenceMechanism instance;
 
 	// public Vector throw;
 	/**
@@ -60,8 +60,12 @@ public class FilePersistence implements IPersistenceMechanism {
 	/**
 	 *Return an instance of this object to be used in {@link:PersistenceFactory} class
 	 */
-	public IPersistenceMechanism getInstance() {
-		return null;
+	public static IPersistenceMechanism getInstance() {
+   	
+		if(instance == null) {
+         instance = new FilePersistence();
+      }
+      return instance;
 	}
 
 	/**

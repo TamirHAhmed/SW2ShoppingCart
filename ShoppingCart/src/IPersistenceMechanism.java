@@ -52,6 +52,6 @@ public interface IPersistenceMechanism {
 	/**
 	 *Return an instance of this object to be used in {@link:PersistenceFactory} class
 	 */
-  public IPersistenceMechanism getInstance();
+ // public IPersistenceMechanism getInstance();
 
 }
