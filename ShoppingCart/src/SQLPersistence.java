@@ -82,10 +82,6 @@ public class SQLPersistence implements IPersistenceMechanism {
      */
     public IShoppingCart loadCart(int cartId) {
         
-
-        int id = 0, prId = 0, quantity = 0;
-        double price = 0;
-
         String CartId = "", quantity_ = "", id_ = "", productId_ = "", price_ = "";
 
         CartId += cartId;
@@ -94,7 +90,6 @@ public class SQLPersistence implements IPersistenceMechanism {
             con = DriverManager.getConnection(host, username, password);
    
             st = con.createStatement();
-            stmt = con.createStatement();
             
 
             String query = "select * from `mysql_e`.`shopping_cart`";
@@ -113,7 +108,6 @@ public class SQLPersistence implements IPersistenceMechanism {
                 	
                     PreparedStatement pstmt;
 
-                    ResultSet rss;
 
                     pstmt = con.prepareStatement(
                             "select * from `mysql_e`.`cartitem` where `Shopping_cart_id`= (select `Shopping_cart_id` from `mysql_e`.`shopping_cart` where `Shopping_cart_id` = ? )");
@@ -235,7 +229,6 @@ public class SQLPersistence implements IPersistenceMechanism {
                 if (String.valueOf(cart.getId()).equals(rs.getString(1))) {
 
                     PreparedStatement pstmt;
-                    ResultSet rss;
                     pstmt = con.prepareStatement(
                             "select * from `mysql_e`.`cartitem` where `Shopping_cart_id`= (select `Shopping_cart_id` from `mysql_e`.`shopping_cart` where `Shopping_cart_id` = ? )");
                     // Create a PreparedStatement object    1                     
@@ -301,10 +294,8 @@ public class SQLPersistence implements IPersistenceMechanism {
     @Override
     public IShoppingCart loadCart(int sessionID, int customerID) {
 
-        int id = 0, productId = 0, quantity = 0;
-        double price = 0;
 
-        String CartId = "", quantity_ = "", id_ = "", productId_ = "", price_ = "";
+        String quantity_ = "", id_ = "", productId_ = "", price_ = "";
 
         String SessionID = "", CustomerID = "";
         SessionID += sessionID;
@@ -328,7 +319,6 @@ public class SQLPersistence implements IPersistenceMechanism {
                 	
                      
                     PreparedStatement pstmt;
-                    ResultSet rss;
                     pstmt = con.prepareStatement(
                             "select * from `mysql_e`.`cartitem` where `Shopping_cart_id`= (select `Shopping_cart_id` from `mysql_e`.`shopping_cart` where `Shopping_cart_id` = ? )");
                     // Create a PreparedStatement object    1 
